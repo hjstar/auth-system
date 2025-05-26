@@ -14,10 +14,16 @@ export default function ProfilePage() {
       await axios.get("/api/users/logout");
       toast.success('Logout successful');
       router.push("/login");
-    } catch (error: any) {
-      console.log("logout failed", error.message);
-      toast.error(error.message);
-    }
+    } catch (error: unknown) {
+  if (error instanceof Error) {
+    console.log("logout failed", error.message);
+    toast.error(error.message);
+  } else {
+    console.log("logout failed", error);
+    toast.error("Logout failed. Please try again.");
+  }
+}
+
   }
 
   const getUserDetails = async () => {

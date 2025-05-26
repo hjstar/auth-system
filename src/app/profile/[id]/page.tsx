@@ -1,4 +1,4 @@
-export default function UserProfilePage({ params }: any) {
+export default function UserProfilePage({ params }: { params: { id: string } }) {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-100 to-blue-200 dark:from-gray-900 dark:to-gray-800 px-4">
       <div className="text-center bg-white dark:bg-gray-800 shadow-lg rounded-xl p-8">

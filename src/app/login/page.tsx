@@ -20,10 +20,19 @@ export default function LoginPage(){
         const response=await axios.post("/api/users/login",user);
         console.log("login sucess",response.data);
         router.push("/profile")
-      } catch (error:any) {
-        console.log("login failed",error.message);
-        toast.error(error.message);
-      }
+      } catch (error: unknown) {
+  let errorMessage = "Login failed. Please try again.";
+
+  if (error instanceof Error) {
+    console.log("login failed", error.message);
+    errorMessage = error.message;
+  } else {
+    console.log("login failed", error);
+  }
+
+  toast.error(errorMessage);
+}
+
       finally{
         setloading(false);
       }
